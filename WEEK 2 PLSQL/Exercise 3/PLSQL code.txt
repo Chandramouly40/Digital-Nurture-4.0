@@ -1,0 +1,99 @@
+/*CREATE TABLE savings_accounts (
+    account_id      NUMBER(6) PRIMARY KEY,
+    customer_name   VARCHAR2(50),
+    balance         NUMBER(20,2),
+    interestrate    NUMBER(5,2)
+);
+
+CREATE TABLE employees (
+    employee_id     NUMBER(6) PRIMARY KEY,
+    employee_name   VARCHAR2(50),
+    department_id   NUMBER(4),
+    salary          NUMBER(15,2)
+);
+CREATE TABLE accounts (
+    acct_id         NUMBER(6) PRIMARY KEY,
+    acct_name       VARCHAR2(50),
+    acct_balance    NUMBER(20,2)
+);
+
+begin
+    INSERT INTO savings_accounts VALUES (101, 'Alice Johnson', 10000.00, 1.00);
+INSERT INTO savings_accounts VALUES (102, 'Bob Smith',     25000.00, 1.00);
+INSERT INTO savings_accounts VALUES (103, 'Carol Lee',     15000.50, 1.00);
+INSERT INTO employees VALUES (201, 'David Lee',    10, 50000.00);
+INSERT INTO employees VALUES (202, 'Emily Davis',  20, 60000.00);
+INSERT INTO employees VALUES (203, 'Frank Turner', 10, 55000.00);
+INSERT INTO employees VALUES (204, 'Grace Kim',    30, 70000.00);
+INSERT INTO accounts VALUES (301, 'Henry Adams', 5000.00);
+INSERT INTO accounts VALUES (302, 'Irene Zhao',  8000.00);
+INSERT INTO accounts VALUES (303, 'Jack Ma',     12000.00);
+END;
+*/
+/*
+CREATE OR REPLACE PROCEDURE TransferFunds (
+    p_from_acct   IN NUMBER,
+    p_to_acct     IN NUMBER,
+    p_amount      IN NUMBER
+) AS
+    v_balance     NUMBER(20,2);
+BEGIN
+    -- Check balance of source account
+    SELECT acct_balance
+      INTO v_balance
+      FROM accounts
+     WHERE acct_id = p_from_acct;
+
+    IF v_balance < p_amount THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Insufficient funds in source account');
+    END IF;
+
+    -- Debit source
+    UPDATE accounts
+       SET acct_balance = acct_balance - p_amount
+     WHERE acct_id = p_from_acct;
+
+    -- Credit destination
+    UPDATE accounts
+       SET acct_balance = acct_balance + p_amount
+     WHERE acct_id = p_to_acct;
+
+    COMMIT;
+END TransferFunds;
+/
+*/
+/*
+
+CREATE OR REPLACE PROCEDURE UpdateEmployeeBonus (
+    p_dept_id    IN NUMBER,
+    p_bonus_pct  IN NUMBER
+) AS
+BEGIN
+    UPDATE employees
+    SET salary = salary + (salary * p_bonus_pct / 100)
+    WHERE department_id = p_dept_id;
+    COMMIT;
+END UpdateEmployeeBonus;
+/
+
+CREATE OR REPLACE PROCEDURE ProcessMonthlyInterest AS
+BEGIN
+    FOR rec IN (SELECT account_id, balance FROM savings_accounts) LOOP
+        UPDATE savings_accounts
+        SET balance = rec.balance + (rec.balance * 0.01)
+        WHERE account_id = rec.account_id;
+    END LOOP;
+    COMMIT;
+END ProcessMonthlyInterest;
+/
+*/
+/*
+EXEC ProcessMonthlyInterest;
+SELECT * from SAVINGS_ACCOUNTS;
+*/
+/*
+EXEC UpdateEmployeeBonus(10, 5);
+select * from employees;
+*/
+EXEC TransferFunds(301, 302, 1000);
+select * from accounts;

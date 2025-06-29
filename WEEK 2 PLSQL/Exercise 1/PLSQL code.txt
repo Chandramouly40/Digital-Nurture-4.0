@@ -1,0 +1,81 @@
+/*create table CUSTOMERS(
+    id NUMBER(6),
+    name VARCHAR(50),
+    age number(5),
+    balance number(20),
+    interestrate number(6,3),
+    status VARCHAR(10),
+    due DATE
+);
+INSERT INTO CUSTOMERS (id, name, age, balance, interestrate, status, due)
+VALUES (100001, 'Alice Johnson', 65, 500.00, 3.750, 'false', TO_DATE('10-JUL-2025', 'DD-MON-YYYY'));
+INSERT INTO CUSTOMERS (id, name, age, balance, interestrate, status, due)
+VALUES (100002, 'Bob Smith', 72, 6000.50, 4.125, 'false', TO_DATE('13-JUL-2025', 'DD-MON-YYYY'));
+
+INSERT INTO CUSTOMERS (id, name, age, balance, interestrate, status, due)
+VALUES (100003, 'Carol Thomas', 68, 320500.75, 3.900, 'false', TO_DATE('20-AUG-2025', 'DD-MON-YYYY'));
+
+INSERT INTO CUSTOMERS (id, name, age, balance, interestrate, status, due)
+VALUES (100004, 'David Lee', 45, 1000000.00, 5.000, 'false', TO_DATE('12-JUL-2025', 'DD-MON-YYYY'));
+
+INSERT INTO CUSTOMERS (id, name, age, balance, interestrate, status, due)
+VALUES (100005, 'Emily Davis', 35, 500000.25, 4.250, 'false', TO_DATE('05-SEP-2025', 'DD-MON-YYYY'));
+*/
+/*
+DECLARE 
+CURSOR rec IS select id,age,interestrate from CUSTOMERS;
+v_id NUMBER(6);
+v_age NUMBER(5);
+v_rate NUMBER(6,3);
+BEGIN
+    OPEN rec;
+    LOOP
+        fetch rec into v_id,v_age,v_rate;
+        EXIT WHEN rec%NOTFOUND;
+        if (v_age>=60) THEN
+            v_rate := v_rate*0.99;
+            UPDATE CUSTOMERS set INTERESTRATE=v_rate WHERE id=v_id;
+        END IF;
+    END LOOP;
+    close rec;
+END;
+
+
+DECLARE 
+CURSOR rec IS SELECT id,balance,status from CUSTOMERS;
+v_id NUMBER(6);
+v_status VARCHAR(10);
+v_balance NUMBER(20);
+BEGIN
+    OPEN rec;
+    LOOP
+        fetch rec into v_id,v_balance,v_status;
+        EXIT WHEN rec%NOTFOUND;
+        if (v_balance>=10000) THEN
+            UPDATE customers set status='true' where id=v_id;
+        end if;
+    END LOOP;
+    CLOSE rec;
+END;
+
+select id,name,age,balance,interestrate,status as isVIP from customers;
+*/
+
+DECLARE 
+CURSOR rec is select id,name,due from customers;
+v_id number(6);
+v_name VARCHAR(50);
+v_due DATE;
+v_today DATE:=SYSDATE;
+BEGIN
+    OPEN rec;
+    LOOP
+        FETCH rec into v_id,v_name,v_due;
+        exit when rec%NOTFOUND;
+        if(v_today+30 >= v_due) then
+            DBMS_OUTPUT.PUT_LINE('CUSTOMER ID: '||v_id||' Customer name: '||v_name|| ' due is about to end');
+        end if;
+    END LOOP;
+END;
+
+
