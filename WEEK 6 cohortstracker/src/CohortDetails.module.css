@@ -1,0 +1,19 @@
+/* src/CohortDetails.module.css */
+
+.box {
+  width: 300px; /* [cite: 26] */
+  display: inline-block; /* [cite: 27] */
+  margin: 10px; /* [cite: 28] */
+  padding-top: 10px; /* [cite: 29] */
+  padding-bottom: 10px; /* [cite: 29] */
+  padding-left: 20px; /* [cite: 30] */
+  padding-right: 20px; /* [cite: 30] */
+  border: 1px solid black; /* [cite: 31] */
+  border-radius: 10px; /* [cite: 32] */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for better visual */
+}
+
+dt {
+  font-weight: 500; /* [cite: 33] */
+  border : 4px solid black;
+}
