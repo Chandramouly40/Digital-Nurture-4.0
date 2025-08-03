@@ -1,0 +1,47 @@
+.app-container {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.controls {
+  margin: 20px;
+}
+
+.controls button {
+  margin: 0 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.details-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.component-wrapper {
+  padding: 0 20px;
+  border-right: 2px solid green;
+}
+
+.component-wrapper.blog-wrapper {
+  border-right: none;
+}
+
+.component-wrapper h2 {
+  font-size: 1.8em;
+  font-weight: normal;
+}
+
+.component-wrapper h3 {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+.component-wrapper h4,
+.component-wrapper p {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
