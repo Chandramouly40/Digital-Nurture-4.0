@@ -1,0 +1,63 @@
+PS D:\week 8\3.GOL> git init
+Initialized empty Git repository in D:/week 8/3.GOL/.git/
+PS D:\week 8\3.GOL> git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Somefile.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+PS D:\week 8\3.GOL> git branch -M main
+PS D:\week 8\3.GOL> git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Somefile.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+PS D:\week 8\3.GOL> git add .
+PS D:\week 8\3.GOL> git commit -m "1st commit"
+[main (root-commit) 1285206] 1st commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Somefile.txt
+PS D:\week 8\3.GOL> git switch -c GitNewBranch
+Switched to a new branch 'GitNewBranch'
+PS D:\week 8\3.GOL> git status
+On branch GitNewBranch
+nothing to commit, working tree clean
+PS D:\week 8\3.GOL> git branch
+* GitNewBranch
+  main
+PS D:\week 8\3.GOL> git add .
+PS D:\week 8\3.GOL> git commit -m "committed in new branch"
+[GitNewBranch e6be28d] committed in new branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 anothernewfile.txt
+PS D:\week 8\3.GOL> git switch main
+Switched to branch 'main'
+PS D:\week 8\3.GOL> git diff GitNewBranch
+diff --git a/anothernewfile.txt b/anothernewfile.txt
+deleted file mode 100644
+index d59316a..0000000
+--- a/anothernewfile.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-some file created in anothernewfile.txt       
+\ No newline at end of file
+Fast-forward
+ anothernewfile.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 anothernewfile.txt
+PS D:\week 8\3.GOL> git log --graph --oneline --decorate
+* e6be28d (HEAD -> main, GitNewBranch) committed in new branch       
+* 1285206 1st commit
+PS D:\week 8\3.GOL> git branch -d GitNewBranch
+Deleted branch GitNewBranch (was e6be28d).
+PS D:\week 8\3.GOL> git branch
+* main

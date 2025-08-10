@@ -1,0 +1,97 @@
+PS D:\week 8\4.GOL> git branch -M main
+PS D:\week 8\4.GOL> git add hello.xml
+PS D:\week 8\4.GOL> git commit -m "Add different hello.xml in main branch"
+[main (root-commit) 51cf08a] Add different hello.xml in main branch
+ 1 file changed, 3 insertions(+)
+ create mode 100644 hello.xml
+PS D:\week 8\4.GOL> git switch -c GitWork
+Switched to a new branch 'GitWork'
+PS D:\week 8\4.GOL> git add hello.xml
+PS D:\week 8\4.GOL> git branch
+* GitWork
+  main
+PS D:\week 8\4.GOL> git commit -m "Add hello.xml in GitWork branch"
+[GitWork 6b451fa] Add hello.xml in GitWork branch
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS D:\week 8\4.GOL> git switch main
+Switched to branch 'main'
+PS D:\week 8\4.GOL> git log --graph --oneline --decorate --all
+* 6b451fa (GitWork) Add hello.xml in GitWork branch
+* 51cf08a (HEAD -> main) Add different hello.xml in main branch      
+PS D:\week 8\4.GOL> git branch       
+  GitWork
+* main
+PS D:\week 8\4.GOL> git merge GitWork
+Updating 51cf08a..6b451fa
+Fast-forward
+ hello.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS D:\week 8\4.GOL> git branch 
+  GitWork
+* main
+PS D:\week 8\4.GOL> git switch GitWork
+Switched to branch 'GitWork'
+PS D:\week 8\4.GOL> git switch main
+Switched to branch 'main'
+PS D:\week 8\4.GOL> git commit -m "commit in main branch"
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   hello.xml
+
+no changes added to commit (use "git add" and/or "git commit -a")    
+PS D:\week 8\4.GOL> git add .
+PS D:\week 8\4.GOL> git commit -m " commit in main branch"
+[main f64f0a7]  commit in main branch
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS D:\week 8\4.GOL> git switch GitWork
+Switched to branch 'GitWork'
+PS D:\week 8\4.GOL> git add . 
+PS D:\week 8\4.GOL> git commit -m "commit in another branch"
+On branch GitWork
+nothing to commit, working tree clean
+PS D:\week 8\4.GOL> git switch main
+Switched to branch 'main'
+PS D:\week 8\4.GOL> git merge GitWork
+Already up to date.
+PS D:\week 8\4.GOL> git switch GitWork
+Switched to branch 'GitWork'
+PS D:\week 8\4.GOL> git status
+On branch GitWork
+nothing to commit, working tree clean
+PS D:\week 8\4.GOL> git log
+commit 6b451face83ec0afaedf6db246f713862b881a02 (HEAD -> GitWork)
+Author: user <abc@gmail.com>
+Date:   Sun Aug 10 21:28:39 2025 +0530
+
+    Add hello.xml in GitWork branch
+
+commit 51cf08a3df03d2cddd5605e0b66069b237f77ff5
+Author: user <abc@gmail.com>
+Date:   Sun Aug 10 21:27:09 2025 +0530
+
+    Add different hello.xml in main branch
+PS D:\week 8\4.GOL> git switch GitWork
+Already on 'GitWork'
+PS D:\week 8\4.GOL> git switch main
+Switched to branch 'main'
+PS D:\week 8\4.GOL> git merge GitWork
+Already up to date.
+PS D:\week 8\4.GOL> git branch
+  GitWork
+* main
+PS D:\week 8\4.GOL> git add .
+PS D:\week 8\4.GOL> git merge GitWork
+Already up to date.
+PS D:\week 8\4.GOL> git commit -m "commit in main branch"
+[main 2daff03] commit in main branch
+ 1 file changed, 2 insertions(+)
+PS D:\week 8\4.GOL> git log --graph --oneline --decorate
+* 2daff03 (HEAD -> main) commit in main branch
+* f64f0a7  commit in main branch
+* 6b451fa (GitWork) Add hello.xml in GitWork branch
+* 51cf08a Add different hello.xml in main branch
+PS D:\week 8\4.GOL> git branch -d GitWork
+Deleted branch GitWork (was 6b451fa).
+PS D:\week 8\4.GOL> 
